@@ -5,6 +5,7 @@ import os
 import requests
 import json
 import config
+from notify import NotifyRobot
 
 
 class IosApps:
@@ -55,9 +56,12 @@ class IosApps:
         app_version_now = self.get_app_version(app_info_itunes)
         app_version_before = self.get_app_version(app_info_local)
         if app_version_now > app_version_before:
-            self.show_update_content(app_info_itunes, app_info_local)
+            content = self.get_update_content(app_info_itunes, app_info_local)
+            return content
+        else:
+            return ""
 
-    def show_update_content(self, app_info_itunes, app_info_local):
+    def get_update_content(self, app_info_itunes, app_info_local):
         track_id = app_info_itunes.get("trackId")
         version = app_info_itunes.get("version", "0")
         track_name = app_info_itunes.get("trackName")
@@ -70,19 +74,21 @@ class IosApps:
         file_size_str = self.format_file_size(file_size_bytes)
         file_size_str_local = self.format_file_size(file_size_bytes_local)
         # print(track_id)
-        print("应用名:{}".format(track_name))
-        print("上一版本号:{}, 当前版本号{}".format(app_version_before, version))
-        print("上一版本应用大小{}, 当前版本应用大小{}".format(file_size_str, file_size_str_local))
-        print("本次更新内容:")
-        print(release_notes)
+        content = "应用名:{}\n上一版本号:{}, 当前版本号{}\n上一版本应用大小{}, 当前版本应用大小{}\n本次更新内容:\n{}".format(
+            track_name, app_version_before, version, file_size_str, file_size_str_local, release_notes
+        )
+        print(content)
+        return content
 
 
 if __name__ == '__main__':
     ios_apps = IosApps()
+    robot = NotifyRobot()
     ios_apps_path = config.ios_apps_path
     app_ids = ios_apps.get_apps_ids(ios_apps_path)
+    apps_content = []
     for app_id in app_ids:
-        ios_apps.compare_apps_version(app_id, ios_apps_path)
-
-
+        content = ios_apps.compare_apps_version(app_id, ios_apps_path)
+        apps_content.append(content)
+    robot.send_email(content="\n\n".join(apps_content))
 
