@@ -69,7 +69,6 @@ class IosApps:
 
     def update_app_info(self, app_id, apps_path, app_info):
         full_path = os.path.join(apps_path, "{}.txt".format(app_id))
-        print(app_info)
         with open(full_path, 'w') as f:
             f.write(
                 json.dumps({
