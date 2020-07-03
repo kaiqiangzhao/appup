@@ -6,7 +6,7 @@ import config
 from tools.notify import NotifyRobot
 
 
-if __name__ == '__main__':
+def notify_ios_status():
     ios_apps = IosApps()
     robot = NotifyRobot()
     ios_apps_path = config.ios_apps_path
