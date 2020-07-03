@@ -6,12 +6,13 @@ import requests
 import json
 import config
 from notify import NotifyRobot
+from apps.ios import ios_apps_modules
 
 
 class IosApps:
     def get_apps_ids(self, apps_path):
-        files = os.listdir(apps_path)
         apps_ids = []
+        files = os.listdir(apps_path)
         for file in files:
             app_id = file.split(".")[0]
             apps_ids.append(app_id)
@@ -52,11 +53,14 @@ class IosApps:
 
     def compare_apps_version(self, app_id, apps_path):
         app_info_itunes = self.get_app_info_itunes(app_id)
+        track_name = app_info_itunes.get("trackName")
+        print(track_name)
         app_info_local = self.get_app_info_local(app_id, apps_path)
         app_version_now = self.get_app_version(app_info_itunes)
         app_version_before = self.get_app_version(app_info_local)
         if app_version_now > app_version_before:
             content = self.get_update_content(app_info_itunes, app_info_local)
+            # TODO: 更新文件
             return content
         else:
             return ""
@@ -89,6 +93,7 @@ if __name__ == '__main__':
     apps_content = []
     for app_id in app_ids:
         content = ios_apps.compare_apps_version(app_id, ios_apps_path)
-        apps_content.append(content)
+        if content:
+            apps_content.append(content)
     robot.send_email(content="\n\n".join(apps_content))
 

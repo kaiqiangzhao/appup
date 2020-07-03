@@ -14,6 +14,9 @@ class NotifyRobot:
         self.receivers = config.receivers
 
     def send_email(self, content):
+        if not content:
+            print("无更新")
+            return None
         message = MIMEText(content, 'plain', 'utf-8')
         message['Subject'] = 'ios软件更新提醒'
         message['From'] = self.sender
