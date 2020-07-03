@@ -62,10 +62,21 @@ class IosApps:
         app_version_before = self.get_app_version(app_info_local)
         if app_version_now > app_version_before:
             content = self.get_update_content(app_info_itunes, app_info_local)
-            # TODO: 更新文件
+            self.update_app_info(app_id, apps_path, app_info_itunes)
             return content
         else:
             return ""
+
+    def update_app_info(self, app_id, apps_path, app_info):
+        full_path = os.path.join(apps_path, "{}.txt".format(app_id))
+        print(app_info)
+        with open(full_path, 'w') as f:
+            f.write(
+                json.dumps({
+                    "resultCount": 1,
+                    "results": [app_info]
+                })
+            )
 
     def get_update_content(self, app_info_itunes, app_info_local):
         track_id = app_info_itunes.get("trackId")

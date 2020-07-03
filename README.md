@@ -17,7 +17,7 @@
 ### ios/notify.py
 对比ios apps的版本号, 发送邮件通知
 
-### task.py 
+### exe_task.py 
 配置定时任务
 
 参考文献: [Apple官方文档](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html#//apple_ref/doc/uid/TP40017632-CH5-SW1)

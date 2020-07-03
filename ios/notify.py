@@ -18,3 +18,6 @@ def notify_ios_status():
             apps_content.append(content)
     robot.send_email(content="\n\n".join(apps_content))
 
+
+if __name__ == '__main__':
+    notify_ios_status()
