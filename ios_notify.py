@@ -6,10 +6,14 @@ import requests
 import json
 import config
 from notify import NotifyRobot
-from apps.ios import ios_apps_modules
 
 
 class IosApps:
+    def __init__(self, country="cn", entity="software"):
+        self.base_url = "https://itunes.apple.com/lookup"
+        self.country = country
+        self.entity = entity
+
     def get_apps_ids(self, apps_path):
         apps_ids = []
         files = os.listdir(apps_path)
@@ -19,11 +23,11 @@ class IosApps:
         return apps_ids
 
     def get_app_info_itunes(self, app_id=989673964):
-        base_url = "https://itunes.apple.com/lookup"
+        base_url = self.base_url
         params = {
             "id": app_id,
-            "country": "cn",
-            "entity": "software"
+            "country": self.country,
+            "entity": self.entity
         }
         data = requests.get(url=base_url, params=params)
         json_data = json.loads(data.text)
