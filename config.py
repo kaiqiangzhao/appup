@@ -8,4 +8,4 @@ mail_password = "your-email-password"
 receivers = ["receivers@gmail.com"]
 
 # apps
-ios_apps_path = "../ios/data"
+ios_apps_path = "./ios/data"

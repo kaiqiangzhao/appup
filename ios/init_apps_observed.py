@@ -22,6 +22,8 @@ def get_app_info_itunes(app_id):
 
 def save_app_info(app_id, data):
     path = config.ios_apps_path
+    if not os.path.exists(path):
+        os.mkdir(path)
     with open(os.path.join(path, "{}.txt".format(app_id)), "w+") as f:
         f.write(data)
 
