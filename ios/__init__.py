@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
-# __author__ = kaiqiangzhao
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- #
 
-from __future__ import unicode_literals, print_function, division
+from .apps import IosAppUp

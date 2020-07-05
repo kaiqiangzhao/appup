@@ -2,10 +2,15 @@
 # -*- coding: utf-8 -*- #
 
 # 邮箱
-mail_domain = "smtp.outlook.com"
-mail_account = "your-email@outlook.com"
-mail_password = "your-email-password"
-receivers = ["receivers@gmail.com"]
+MAIL_DOMAIN = "smtp.outlook.com"
+MAIN_SENDER = "your-email@outlook.com"
+MAIN_PASSWORD = "your-email-password"
+MAIL_RECEIVERS = ["receivers@gmail.com"]
+
 
 # apps
-ios_apps_path = "./ios/data"
+IOS_APPS_PATH = "./ios/data"
+
+# path
+IOS_APPS_OBSERVED = "data/ios_apps_observed.yml"
+APPS_DATA = "data/"

@@ -134,4 +134,4 @@ dmypy.json
 # MAC
 *.DS_Store
 
-ios/data
+data/ios_apps_db.json
