@@ -72,7 +72,7 @@ class IosAppUp:
 
             file_size_bytes_local = int(app_local.get("fileSizeBytes"))
             release_notes = app_online.get("releaseNotes")
-            app_version_local = self.get_app_version(app_local)
+            app_version_local = app_local.get("version", "")
 
             # 文件大小
             file_size_str_online = self.format_file_size(file_size_bytes)
