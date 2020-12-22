@@ -24,6 +24,8 @@
 
 ![img](https://github.com/kaiqiangzhao/appup/blob/master/data/appup.png)
 
+同样你也会看的很有趣的事情, 有时有的app在1天内发版多次, 这是上线了什么bug吗?
+
 ### TODO: 爬豆瓣
 https://www.douban.com/app/
 
